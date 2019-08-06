@@ -2,27 +2,28 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
   <modelVersion>4.0.0</modelVersion>
 
+
   <parent>
-    <groupId>org.sonatype.oss</groupId>
-    <artifactId>oss-parent</artifactId>
-    <version>7</version>
+    <groupId>no.cantara.emi</groupId>
+    <artifactId>parent</artifactId>
+    <version>8</version>
   </parent>
 
   <groupId>com.github.kevinsawicki</groupId>
   <artifactId>http-request</artifactId>
   <version>6.1-SNAPSHOT</version>
-  <url>https://github.com/kevinsawicki/http-request</url>
+  <url>https://github.com/Cantara/http-request</url>
   <description>Library for making HTTP requests</description>
   <inceptionYear>2011</inceptionYear>
 
   <issueManagement>
-    <url>https://github.com/kevinsawicki/http-request/issues</url>
+    <url>https://github.com/Cantara/http-request/issues</url>
     <system>GitHub Issues</system>
   </issueManagement>
 
   <properties>
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-    <jetty.version>8.1.9.v20130131</jetty.version>
+    <jetty.version>9.4.19.v20190610</jetty.version>
   </properties>
 
   <licenses>
@@ -34,11 +35,24 @@
   </licenses>
 
   <scm>
-    <url>https://github.com/kevinsawicki/http-request</url>
-    <connection>scm:git:git://github.com/kevinsawicki/http-request.git</connection>
-    <developerConnection>scm:git:git@github.com:kevinsawicki/http-request.git</developerConnection>
+    <url>https://github.com/Cantara/http-request</url>
+    <connection>scm:git:git://github.com/Cantara/http-request.git</connection>
+    <developerConnection>scm:git:git@github.com:Cantara/http-request.git</developerConnection>
   </scm>
 
+  <repositories>
+    <!-- Needed for parent  -->
+    <repository>
+      <id>cantara-releases</id>
+      <name>Cantara Release Repository</name>
+      <url>https://mvnrepo.cantara.no/content/repositories/releases/</url>
+    </repository>
+    <repository>
+      <id>cantara-snapshots</id>
+      <name>Cantara Snapshot Repository</name>
+      <url>https://mvnrepo.cantara.no/content/repositories/snapshots/</url>
+    </repository>
+  </repositories>
   <developers>
     <developer>
       <email>kevinsawicki@gmail.com</email>
@@ -55,8 +69,8 @@
         <artifactId>maven-compiler-plugin</artifactId>
         <version>2.3.2</version>
         <configuration>
-          <source>1.5</source>
-          <target>1.5</target>
+          <source>1.8</source>
+          <target>1.8</target>
         </configuration>
       </plugin>
       <plugin>
@@ -94,7 +108,7 @@
       <plugin>
         <groupId>org.apache.maven.plugins</groupId>
         <artifactId>maven-javadoc-plugin</artifactId>
-        <version>2.8</version>
+        <version>3.1.1</version>
         <executions>
           <execution>
             <goals>
@@ -178,10 +192,12 @@
       <id>sign</id>
       <build>
         <plugins>
+          <!-- https://mvnrepository.com/artifact/org.apache.maven.plugins/maven-gpg-plugin -->
+
           <plugin>
             <groupId>org.apache.maven.plugins</groupId>
             <artifactId>maven-gpg-plugin</artifactId>
-            <version>1.4</version>
+            <version>1.6</version>
             <executions>
               <execution>
                 <id>sign-artifacts</id>
@@ -217,6 +233,31 @@
       <version>${jetty.version}</version>
       <scope>test</scope>
     </dependency>
+    <!-- https://mvnrepository.com/artifact/org.eclipse.jetty/jetty-util -->
+    <dependency>
+      <groupId>org.eclipse.jetty</groupId>
+      <artifactId>jetty-client</artifactId>
+      <version>${jetty.version}</version>
+      <scope>test</scope>
+    </dependency>
+    <dependency>
+      <groupId>org.eclipse.jetty</groupId>
+      <artifactId>jetty-util</artifactId>
+      <version>${jetty.version}</version>
+      <scope>test</scope>
+    </dependency>
+    <dependency>
+      <groupId>org.eclipse.jetty</groupId>
+      <artifactId>jetty-proxy</artifactId>
+      <version>${jetty.version}</version>
+      <scope>test</scope>
+    </dependency>
+    <dependency>
+      <groupId>org.apache.maven.plugins</groupId>
+      <artifactId>maven-gpg-plugin</artifactId>
+      <version>1.6</version>
+    </dependency>
+
     <dependency>
       <groupId>org.eclipse.jetty</groupId>
       <artifactId>jetty-servlets</artifactId>

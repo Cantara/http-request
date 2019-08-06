@@ -21,6 +21,8 @@
  */
 package com.github.kevinsawicki.http;
 
+import org.eclipse.jetty.proxy.ProxyServlet;
+import org.eclipse.jetty.server.*;
 import org.eclipse.jetty.util.B64Code;
 
 import org.junit.Before;
@@ -41,12 +43,8 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import org.eclipse.jetty.server.Connector;
-import org.eclipse.jetty.server.Handler;
-import org.eclipse.jetty.server.Request;
-import org.eclipse.jetty.server.Server;
 import org.eclipse.jetty.server.handler.AbstractHandler;
-import org.eclipse.jetty.server.nio.SelectChannelConnector;
+//import org.eclipse.jetty.server.nio.SelectChannelConnector;
 import org.junit.AfterClass;
 
 /**
@@ -148,13 +146,13 @@ public class ServerTestCase {
     server = new Server();
     if (handler != null)
       server.setHandler(handler);
-    Connector connector = new SelectChannelConnector();
+    ServerConnector connector = new ServerConnector(server);
     connector.setPort(0);
     server.setConnectors(new Connector[] { connector });
     server.start();
 
     proxy = new Server();
-    Connector proxyConnector = new SelectChannelConnector();
+    ServerConnector proxyConnector = new ServerConnector(proxy);
     proxyConnector.setPort(0);
     proxy.setConnectors(new Connector[] { proxyConnector });
 
@@ -169,7 +167,7 @@ public class ServerTestCase {
         auth = auth.substring(auth.indexOf(' ') + 1);
         try {
           auth = B64Code.decode(auth, CHARSET_UTF8);
-        } catch (UnsupportedEncodingException e) {
+        } catch (Exception e) {
           throw new RuntimeException(e);
         }
         int colon = auth.indexOf(':');
@@ -184,10 +182,13 @@ public class ServerTestCase {
     handlerList.addHandler(proxyHandler);
     proxy.setHandler(handlerList);
 
-    ServletHolder proxyHolder = proxyHandler.addServletWithMapping("org.eclipse.jetty.servlets.ProxyServlet", "/");
+    ServletHolder proxyHolder = proxyHandler.addServletWithMapping("org.eclipse.jetty.proxy.ProxyServlet", "/");
+    proxyHolder.setAsyncSupported(true);
+    proxyHolder.setInitParameter("maxThreads", "60");
     proxyHolder.setAsyncSupported(true);
 
     proxy.start();
+    //proxy.join();
 
     proxyPort = proxyConnector.getLocalPort();
 
