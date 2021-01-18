@@ -11,7 +11,7 @@
 
   <groupId>com.github.kevinsawicki</groupId>
   <artifactId>http-request2</artifactId>
-  <version>6.0.5</version>
+  <version>6.0.6-SNAPSHOT</version>
   <url>https://github.com/Cantara/http-request</url>
   <description>Library for making HTTP requests</description>
   <inceptionYear>2011</inceptionYear>
@@ -38,7 +38,7 @@
     <url>https://github.com/Cantara/http-request</url>
     <connection>scm:git:git://github.com/Cantara/http-request.git</connection>
     <developerConnection>scm:git:git@github.com:Cantara/http-request.git</developerConnection>
-    <tag>http-request2-6.0.5</tag>
+    <tag>HEAD</tag>
   </scm>
 
   <repositories>
