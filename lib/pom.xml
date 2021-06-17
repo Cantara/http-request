@@ -91,7 +91,7 @@
         <extensions>true</extensions>
         <configuration>
           <instructions>
-            <Require-Bundle />
+            <Require-Bundle/>
             <Export-Package>!.,com.github.kevinsawicki.http</Export-Package>
             <Bundle-RequiredExecutionEnvironment>J2SE-1.5</Bundle-RequiredExecutionEnvironment>
           </instructions>
@@ -260,7 +260,7 @@
     <dependency>
       <groupId>org.apache.maven.plugins</groupId>
       <artifactId>maven-gpg-plugin</artifactId>
-      <version>1.6</version>
+      <version>3.0.1</version>
       <exclusions>
          <exclusion>
             <groupId>org.codehaus.plexus</groupId>
