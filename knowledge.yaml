@@ -1,0 +1,21 @@
+id: http-request
+name: Http Request
+version: 1.1-SNAPSHOT
+description: |
+  Lightweight Java HTTP client library (fork of kevinsawicki/http-request).
+  Provides a fluent API for making HTTP requests without external dependencies,
+  used across Cantara services for simple HTTP client needs.
+units:
+  - id: http-client
+    name: HTTP Client
+    type: library
+    description: HttpRequest fluent API — GET, POST, PUT, DELETE with header and body builders.
+    path: src/main/java
+  - id: multipart
+    name: Multipart
+    type: component
+    description: Multipart form data support for file upload and mixed-content requests.
+  - id: util
+    name: Utilities
+    type: component
+    description: URL encoding, query parameter building, and response header parsing utilities.
