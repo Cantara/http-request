@@ -1,3 +1,17 @@
+kcp_version: "0.21"
+updated: "2026-06-20"
+language: en
+license: "Apache-2.0"
+indexing: private
+temporal:
+  valid_from: "2026-03-10"
+signing:
+  scheme: ed25519
+  scope: this-manifest
+  public_key: "MCowBQYDK2VwAyEAuipgusnqU9vjf3p2yPVLD/DmERT6tBbLOqEETdxAhMU="
+  signature: "https://raw.githubusercontent.com/Cantara/http-request/master/knowledge.yaml.sig"
+not_for: []
+
 id: http-request
 name: Http Request
 version: 1.1-SNAPSHOT
@@ -11,11 +25,20 @@ units:
     type: library
     description: HttpRequest fluent API — GET, POST, PUT, DELETE with header and body builders.
     path: src/main/java
+      content_hash:
+        algorithm: sha256
+        value: ""
   - id: multipart
     name: Multipart
     type: component
     description: Multipart form data support for file upload and mixed-content requests.
+      content_hash:
+        algorithm: sha256
+        value: ""
   - id: util
     name: Utilities
     type: component
     description: URL encoding, query parameter building, and response header parsing utilities.
+      content_hash:
+        algorithm: sha256
+        value: ""
