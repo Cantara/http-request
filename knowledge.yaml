@@ -1,4 +1,4 @@
-kcp_version: "0.21"
+kcp_version: "0.26"
 updated: "2026-06-20"
 language: en
 license: "Apache-2.0"
@@ -25,20 +25,19 @@ units:
     type: library
     description: HttpRequest fluent API — GET, POST, PUT, DELETE with header and body builders.
     path: src/main/java
-      content_hash:
-        algorithm: sha256
-        value: ""
   - id: multipart
     name: Multipart
     type: component
     description: Multipart form data support for file upload and mixed-content requests.
-      content_hash:
-        algorithm: sha256
-        value: ""
   - id: util
     name: Utilities
     type: component
     description: URL encoding, query parameter building, and response header parsing utilities.
-      content_hash:
-        algorithm: sha256
-        value: ""
+
+# Serving Endpoint Binding (KCP SPEC v0.26 §3.12): authoritative manifest URL
+# and authorized MCP representative. Ignored by pre-0.26 verifiers.
+serving:
+  manifest:
+    - https://raw.githubusercontent.com/Cantara/http-request/master/knowledge.yaml
+  mcp:
+    - https://mcp.cantara.no/mcp
