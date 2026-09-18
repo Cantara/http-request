@@ -257,23 +257,6 @@
       <version>${jetty.version}</version>
       <scope>test</scope>
     </dependency>
-    <dependency>
-      <groupId>org.apache.maven.plugins</groupId>
-      <artifactId>maven-gpg-plugin</artifactId>
-      <version>1.6</version>
-      <exclusions>
-         <exclusion>
-            <groupId>org.codehaus.plexus</groupId>
-             <artifactId>plexus-utils</artifactId>
-         </exclusion>
-       </exclusions>
-    </dependency>
-    <!-- https://mvnrepository.com/artifact/org.codehaus.plexus/plexus-utils -->
-    <dependency>
-       <groupId>org.codehaus.plexus</groupId>
-       <artifactId>plexus-utils</artifactId>
-       <version>3.5.1</version>
-    </dependency>
 
 
     <dependency>
