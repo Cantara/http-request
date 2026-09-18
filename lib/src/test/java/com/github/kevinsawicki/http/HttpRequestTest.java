@@ -129,6 +129,28 @@ public class HttpRequestTest extends ServerTestCase {
   }
 
   /**
+   * Restore the default connection factory after every test.
+   * <p>
+   * {@link #customConnectionFactory()} installs a factory on {@link HttpRequest}, which is
+   * global and static, and whose {@code create} ignores the URL it is given and always
+   * connects to the bare test-server URL. Nothing used to put it back: the only thing that
+   * did so was {@link #nullConnectionFactory()}, a separate test, so cleanup depended
+   * entirely on which order the two happened to run in.
+   * <p>
+   * Every test running after the leak was silently redirected to that bare URL, losing its
+   * query string and its path, so handlers saw null parameters and a "/" path. A test
+   * asking for an https URL got a plain http connection back and failed to cast it.
+   * <p>
+   * This stayed hidden under junit 4.10, which ran methods in reflection order. JUnit 4.11
+   * replaced that with a deterministic order that moved the offending test earlier, which
+   * is what turned a latent leak into eight failures and one error.
+   */
+  @After
+  public void restoreConnectionFactory() {
+    HttpRequest.setConnectionFactory(null);
+  }
+
+  /**
    * Create request with malformed URL
    */
   @Test(expected = HttpRequestException.class)
